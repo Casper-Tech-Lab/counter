@@ -43,14 +43,15 @@ pub extern "C" fn counter_get() {
 
 #[no_mangle]
 pub extern "C" fn call() {
-    let counter_local_key = storage::new_uref(0); //initialize counter
+    // カウンターの初期化
+    let counter_local_key = storage::new_uref(0);
 
-    // Create initial named keys of the contract.
+    // named keyの作成
     let mut counter_named_keys: BTreeMap<String, Key> = BTreeMap::new();
     let key_name = String::from(COUNT_KEY);
     counter_named_keys.insert(key_name, counter_local_key.into());
 
-    // Create entry point
+    // エントリーポイントの作成
     let mut counter_entry_points = EntryPoints::new();
     counter_entry_points.add_entry_point(EntryPoint::new(
         COUNTER_INC,
