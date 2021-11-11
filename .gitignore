@@ -1,3 +1,4 @@
 Cargo.lock
 target
 tests/wasm/*wasm
+.DS_Store
