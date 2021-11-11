@@ -22,14 +22,14 @@ pub extern "C" fn call() {
         }
     };
 
-    // 現在の値を取得する為に、エントリーポイント"counter_get"をCall
+    // エントリーポイント"counter_get"をCallし、現在の値を取得する
     let current_counter_value: u32 =
         runtime::call_contract(contract_hash, COUNTER_GET, RuntimeArgs::new());
 
-    // 値をインクリメントする為に、エントリーポイント"counter_inc"をCall
+    // エントリーポイント"counter_inc"をCallし、値をインクリメントする
     let _: () = runtime::call_contract(contract_hash, COUNTER_INC, RuntimeArgs::new());
 
-    // 新しい値を取得する為に、エントリーポイント"counter_get"を再びCall
+    // エントリーポイント"counter_get"を再びCallし、新しい値を取得する
     let new_counter_value: u32 =
         runtime::call_contract(contract_hash, COUNTER_GET, RuntimeArgs::new());
 
