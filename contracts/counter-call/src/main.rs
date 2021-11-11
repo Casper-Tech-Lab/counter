@@ -12,7 +12,7 @@ const COUNTER_GET: &str = "counter_get";
 
 #[no_mangle]
 pub extern "C" fn call() {
-    // ContractHashの取得
+    // カウンタースマートコントラクトのContractHashを取得
     let contract_hash = {
         let counter_uref = runtime::get_key(COUNTER_KEY).unwrap_or_revert_with(ApiError::GetKey);
         if let Key::Hash(hash) = counter_uref {
