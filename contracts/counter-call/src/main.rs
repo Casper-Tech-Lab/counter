@@ -12,7 +12,7 @@ const COUNTER_GET: &str = "counter_get";
 
 #[no_mangle]
 pub extern "C" fn call() {
-    // Read the Counter smart contract's ContactHash.
+    // カウンタースマートコントラクトのContractHashを取得
     let contract_hash = {
         let counter_uref = runtime::get_key(COUNTER_KEY).unwrap_or_revert_with(ApiError::GetKey);
         if let Key::Hash(hash) = counter_uref {
@@ -22,18 +22,18 @@ pub extern "C" fn call() {
         }
     };
 
-    // Call Counter to get the current value.
+    // エントリーポイント"counter_get"をCallし、現在の値を取得する
     let current_counter_value: u32 =
         runtime::call_contract(contract_hash, COUNTER_GET, RuntimeArgs::new());
 
-    // Call Counter to increment the value.
+    // エントリーポイント"counter_inc"をCallし、値をインクリメントする
     let _: () = runtime::call_contract(contract_hash, COUNTER_INC, RuntimeArgs::new());
 
-    // Call Counter to get the new value.
+    // エントリーポイント"counter_get"を再びCallし、新しい値を取得する
     let new_counter_value: u32 =
         runtime::call_contract(contract_hash, COUNTER_GET, RuntimeArgs::new());
 
-    // Expect counter to increment by one.
+    // インクリメントされた値が1でなければ、リバートする
     if new_counter_value - current_counter_value != 1u32 {
         runtime::revert(ApiError::User(67));
     }

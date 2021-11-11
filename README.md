@@ -1,22 +1,22 @@
-# Counter Smart Contract
+# カウンター
 
-This is an example of a simple smart contract, the Counter.
+デプロイする度にインクリメントされる、シンプルなスマートコントラクトです。
 
-## Usage
+## 使い方
 
-### Set up the Rust toolchain
-You need the Rust toolchain to develop smart contracts.
+### Rust toolchainのセットアップ
+スマートコントラクトの開発の為に、以下のコマンドで準備を行います。
 ```bash
 $ make prepare
 ```
 
-### Compile smart contracts
-Compile WASM files that will be used later.
+### スマートコントラクトのコンパイル
+スマートコントラクトを、WASMファイルにコンパイルします。
 ```bash
 $ make build-contract
 ```
-### Run tests
-You can run integration tests with this command:
+### テストの実行
+以下のコマンドで、integrationテストを実行することができます。
 ```bash
 $ make test
 ```
